@@ -1,0 +1,58 @@
+$lowIE: false !default; // 默认不兼容ie9以下
+// 清除浮动
+%clearFix {
+  &:after {
+    content: '';
+    clear: both;
+    overflow: hidden; 
+    display: block;
+    visibility: hidden;
+    height: 0;
+  }
+}
+//单行截断
+%ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+// 文本两端对齐
+%justify {
+  text-align: justify;
+  text-justify: distribute-all-lines;
+  text-align-last: justify;
+}
+
+//剧中
+%center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%positionCenter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+%flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// 文字渐变
+@mixin textGradient($top, $bottom, $position: 30%) {
+  background: linear-gradient(to bottom $top $position, $bottom);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+@mixin transformCenter {
+  @extend %center;
+  transform: translate(-50%, -50%);
+}

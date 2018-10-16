@@ -108,7 +108,7 @@ function throttle(fn, delay, now) {
     if (type === 'jsonp') {
       var callbackName = option.callbackName || 'callback',
         script = document.createElement('script'),
-        random = ('' + Math.random() + Math.random()).replace(/0\./g, '_/);
+        random = ('' + Math.random() + Math.random()).replace(/0\./g, '_/');
         script.src = url + '&' + callbackName + '=jayTools' + random;
       document.body.appendChild(script);
       window['jayTools' + random] = option.success;
