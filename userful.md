@@ -130,3 +130,70 @@ function throttle(fn, delay, now) {
   }
 ```
 #### 7.对象合并
+  ```javascript
+    function mergeObj(target, obj) {
+      if (target === obj) {
+        return true;
+      }
+
+      return JSON.stringfy(target) === JSON.stringify(obj);
+    }
+  ```
+#### 8.对象拷贝
+```javascript
+  function cloneObj(obj, deep) {
+    if (obj === null) {
+      return null;
+    }
+    if (typeof obj !== 'object') {
+      return obj;
+    }
+    var result = checkType(obj) === 'array' ? [] : {},
+        self = this;
+        keys = Object.keys(obj);
+    if (deep) {
+      kets.forEach(function (key) {
+        result[key] = self.checkType(obj[key]) === 'object' || 
+          self.checkType(obj[type]) === 'array' ? self.clone(obj[key]) : obj[key]
+      })
+    } else  {
+      keys.forEach(function (key) {
+        result[key] = obj[key];
+      })
+    }
+    return result;
+  }
+```
+#### 9.节点后插入
+```javascript
+  function insertAfter(target, node) {
+    if (target.nodeType !== 1 || node.nodeType !== 1) {
+      throw TypeError(target + 'or' + node + 'is no a html node!');
+    }
+    var next = target.nextSibling, 
+        parent = target.parentNode;
+    next ? parent.insertBefore(node, next) : parent.appendChild(node);
+  }
+```
+#### 10.计算时差
+```javascript
+  function timeDiff(startTime, endTime, noHours) {
+    if (startTime > endTimes) {
+      var temp = startTime;
+      startTime = emdTime;
+      endTime = temp;
+    }
+    var totalSecs = endTime - startTime,
+        leavel1 = totalSecs % (24 * 3600 * 1000), // 计算天数后剩余的毫秒数
+        leavel2 = leavel1 % (3600 * 1000), // 计算小时数后剩余的毫秒数
+        leavel3 = leavel2 % (60 * 1000), // 计算分钟数后剩余的毫秒数
+        result = {};
+    result.day = Math.floor(totalSecs / (24 * 3600 * 1000));
+    result.hours = noHours ? Math.floor(leavel1 / (3600 * 1000)) + result.day * 24 :
+                              Math.floor(leavel1 / (3600 * 1000)); // 计算小时数
+    // 计算相差分钟数
+    result.mis = Math.floor(leavel2 / (60 * 1000)); // 计算相差分钟数
+    result.secs = Math.round(leavel3 / 1000);
+    return result;
+  }
+```
